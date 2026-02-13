@@ -75,8 +75,17 @@ const acceptYes = () => {
   startHearts();
 };
 
+const handleNoInteraction = (event) => {
+  if (event?.preventDefault) {
+    event.preventDefault();
+  }
+  moveNoButton();
+};
+
 noBtn.addEventListener("mouseenter", moveNoButton);
-noBtn.addEventListener("touchstart", moveNoButton);
+noBtn.addEventListener("pointerdown", handleNoInteraction);
+noBtn.addEventListener("click", handleNoInteraction);
+noBtn.addEventListener("touchstart", handleNoInteraction, { passive: false });
 
 document.addEventListener("mousemove", handlePointerMove);
 document.addEventListener("touchmove", handlePointerMove, { passive: true });
